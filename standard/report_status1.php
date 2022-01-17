@@ -2,6 +2,7 @@
 $query = "SELECT * from select_status ";
 $statement = sqlsrv_query($conn, $query);
 ?>
+
 <body onload="hiddenn('0')">
 <div class="container">
     <form action="" method="post">
@@ -23,6 +24,7 @@ $statement = sqlsrv_query($conn, $query);
                 <?php endwhile; ?>
             </select>
         </div>
+        
         <button onclick="window.print()" class="btn btn-primary">พิมพ์รายงาน</button>
         <a class="btn btn-dark"  onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
         <input type="hidden" name="status" id="status" />
@@ -45,7 +47,7 @@ $statement = sqlsrv_query($conn, $query);
                     </tr>
                 </thead>
                 <tbody>
-
+             
                 </tbody>
             </table>
         </div>
