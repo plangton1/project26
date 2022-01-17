@@ -10,7 +10,7 @@ $statement = sqlsrv_query($conn, $query);
         <label><input type="checkbox"  value="3"> กลุ่มผลิตภัณฑ์</label>
         </div>
         <div class="col-md-4">
-        <label><input type="checkbox"  value="4"> ศูนย์ที่เกี่ยวข้อง</label><br>
+        <label><input type="checkbox"  value=""> ศูนย์ที่เกี่ยวข้อง</label><br>
         <label><input type="checkbox"  value="5"> แสดงวันที่/สถานะของเอกสาร</label><br>
         <label><input type="checkbox"  value="6"> ไฟล์แนบ</label><br>
         </div>
@@ -31,21 +31,21 @@ $statement = sqlsrv_query($conn, $query);
         <div class="table table-bordered">
             <table class="table" style="background-color: white;" id="tableall">
                 <thead>
-                    <tr>
-                        <th class="1 selectt">ลำดับที่</th>
-                        <th class="1 selectt">ชื่อมาตรฐาน</th>
+                    <tr>         
+                        <th class="">ลำดับที่</th> 
+                        <th class="text-white" style="background-color: green;">ชื่อหน่วยงานศูนย์</th>
+                        <th class="1 selectt">ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
-                        <th class="4 selectt">ชื่อหน่วยงานศูนย์</th>
+                       
                         <th class="5 selectt">สถานะ</th>
                         <th class="5 selectt">วันที่แต่งตั้งสถานะ</th>
                         <th class="6 selectt">ไฟล์แนบ</th>
 
                     </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
+                <tbody> 
+            </tbody>
             </table>
 
         </div>
