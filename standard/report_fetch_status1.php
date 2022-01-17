@@ -1,0 +1,49 @@
+
+<?php
+require('../connection/connection.php');
+if(($_POST['query']) != '')
+{
+ $search_text = implode(",",$_POST['query']);
+ $query = "SELECT * , a.standard_idtb,b.statuss_name AS name_status , 
+ c.type_id,d.type_id,d.type_name AS name_type    
+ FROM main_std a 
+ INNER JOIN select_status b ON a.standard_status = b.id_statuss
+ INNER JOIN dimension_type c ON a.standard_idtb = c.standard_idtb
+ INNER JOIN type_tb d ON c.type_id = d.type_id   WHERE standard_status IN ($search_text) ";
+}
+else
+{
+ $query = "SELECT * , a.standard_idtb,b.statuss_name AS name_status , 
+ c.type_id,d.type_id,d.type_name AS name_type    
+ FROM main_std a 
+ INNER JOIN select_status b ON a.standard_status = b.id_statuss
+ INNER JOIN dimension_type c ON a.standard_idtb = c.standard_idtb
+ INNER JOIN type_tb d ON c.type_id = d.type_id  ";
+}
+
+$statement = sqlsrv_query($conn,$query);
+$total_row = sqlsrv_num_rows($statement);
+$output = '';
+$i=1;
+// var_dump($_POST['query']);
+
+   while($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)){
+  $output .= '
+  <table class="table table-bordered">
+  <tr>
+   <td>'.$i++.'</td>
+   <td>'.$row["name_status"].'</td>
+   <td>'.$row["standard_meet"].'</td>
+   <td>'.$row["standard_number"].'</td>
+   <td>'.$row["standard_detail"].'</td>
+   <td>'.$row["name_type"].'</td>
+   <td>'.$row["standard_day"].'</td>
+  </tr>
+  </table>
+  ';
+   }
+   
+   
+echo $output;
+exit();
+?>
