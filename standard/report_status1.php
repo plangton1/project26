@@ -6,13 +6,13 @@ $statement = sqlsrv_query($conn, $query);
 <div class="container">
     <form action="" method="post">
         <div class="col-md-4">
-        <label><input type="checkbox" id="check_1" value="1"> มาตรฐานเลขที่</label><br>
+        <label><input type="checkbox" id="check_1" value="1"> ชื่อมาตรฐาน</label><br>
         <label><input type="checkbox" id="check_2" value="2"> ประเภทผลิตภัณฑ์</label><br>
         <label><input type="checkbox" id="check_3" value="3"> กลุ่มผลิตภัณฑ์</label>
         </div>
         <div class="col-md-4">
         <label><input type="checkbox" id="check_4" value="4"> ศูนย์ที่เกี่ยวข้อง</label><br>
-        <label><input type="checkbox" id="check_5" value="5"> แสดงวันที่/สถานะของเอกสาร</label><br>
+        <label><input type="checkbox" id="" value=""> แสดงวันที่/สถานะของเอกสาร</label><br>
         <label><input type="checkbox" id="check_6" value="6"> ไฟล์แนบ</label><br>
         </div>
 
@@ -37,7 +37,7 @@ $statement = sqlsrv_query($conn, $query);
                         <th >ลำดับที่</th>        
                         <th class="text-white" style="background-color: green;">สถานะ</th>
                         <th class="text-white" style="background-color: green;" >วันที่แต่งตั้งสถานะ</th>
-                        <th class="1 selectt"> ชื่อมาตรฐาน</th> 
+                        <th class="1 selectt">ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
                         <th class="4 selectt">ชื่อหน่วยงานศูนย์</th>
@@ -66,11 +66,11 @@ $statement = sqlsrv_query($conn, $query);
                 method: "POST",
                 data: {
                     query: query,
-                    name_type: $('#check_1').is(':checked'), 
-                    name_depart: $('#check_2').is(':checked'),
-                    standard_number: 1,
-                    name_file: 1, 
-                    standard_detail: 1
+                    standard_detail: $('#check_1').is(':checked'), 
+                    name_type: $('#check_2').is(':checked'),
+                    name_depart: $('#check_3').is(':checked'),
+                    name_agency: $('#check_4').is(':checked'),
+                    name_file: $('#check_6').is(':checked')
                 },
                 success: function(data) {
                     $('tbody').html(data);
@@ -83,7 +83,7 @@ $statement = sqlsrv_query($conn, $query);
             var query = $('#search_status').val();
             load_data(query);
             // load_data(['1']);
-            console.log(query);
+            // console.log(query);
         });
     });
 </script>
