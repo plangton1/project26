@@ -25,19 +25,29 @@ $total_row = sqlsrv_num_rows($statement);
 $output = '';
 $i=1;
    while($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)){
-  $output .= '
+  $output .= ' 
   <table class="table table-bordered">
   <tr>
   <td>'.$i++.'</td>
   <td>'.$row["name_status"].'</td>
-  <td>'.$row["standard_day"].'</td>
-  <td>'.$row["standard_detail"].'</td>
-  <td>'.$row["name_type"].'</td>
-  <td>'.$row["name_depart"].'</td>
-  <td>'.$row["standard_number"].'</td>
+  <td>'.$row["standard_day"].'</td>';
+  if ($_POST['standard_detail'] == 0) {
+      $output .= '<td>'.$row["standard_detail"].'</td>';
+  }
+  if ($_POST['name_type'] == true) {
+     $output .= '<td>'.$row["name_type"].'</td>';
+  }
 
-  <td>'.$row["name_file"].'</td>
-  </tr>
+if ($_POST['name_depart'] == true) {
+  $output .= '<td>'.$row["name_depart"].'</td>';
+}
+if ($_POST['standard_number'] == 0) {
+$output .= '<td>'.$row["standard_number"].'</td>';
+}
+if ($_POST['name_file'] == 0) {
+$output .= '<td>'.$row["name_file"].'</td>';
+}
+  '</tr>
   </table>
   ';
    }

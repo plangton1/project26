@@ -27,7 +27,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                     <div class="section-title">
                         <div align="right">
                             <a href="?page=<?= $_GET['page'] ?>&function=update&standard_idtb=<?= $result['standard_idtb'] ?>" class="btn btn-sm btn-warning text-white" style="font-size:20px;">แก้ไขข้อมูลสถานะ</a>
-                            <a href="?page=<?= $_GET['page'] ?>&function=print&standard_idtb=<?= $result['standard_idtb'] ?>" onclick="return confirm('คุณต้องการพิมพ์เอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')" class="btn btn-sm btn-success text-white" style="font-size:20px;">พิมพ์รายงาน</a>
+                                <a href="?page=<?= $_GET['page'] ?>&function=print&standard_idtb=<?= $result['standard_idtb'] ?>" onclick="return confirm('คุณต้องการพิมพ์เอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')" class="btn btn-sm btn-success text-white" style="font-size:20px;">พิมพ์รายงาน</a>
                             <a href="?page=delete&standard_idtb=<?= $result['standard_idtb'] ?>" onclick="return confirm('คุณต้องการลบเอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')" class="btn btn-sm btn-danger" style="font-size:20px;">ลบเอกสาร</a>
                             <a class="btn btn-sm text-white" style="background-color:black; font-size:20px;" onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
                         </div>

@@ -49,11 +49,11 @@ require 'date.php';
     </header> -->
     <form action="" method="post" enctype=multipart/form-data>
         <img src="./img/tistr_sitename.png">
-        
+
         <div style="text-align:right;">
             <h2>
                 <p style="color:#0000ff ;">สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี <br>
-                ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</p>
+                    ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</p>
             </h2>
         </div>
         <hr>
@@ -65,40 +65,39 @@ require 'date.php';
         <h4><strong>เลขที่มอก :</strong> <?= $data['standard_number'] ?></h4>
         <h4><strong>มาตรฐานบังคับ : </strong><?= $data['standard_mandatory'] ?></h4>
         <table class="table table-bordered " style="width: 100%;" border="">
-                    <thead>
-                        <tr>
-                            <th style="background-color:#3cb371 ;" >หน่วยงานที่สามารถทดสอบได้</th>
-                            <th style="background-color:#3cb371 ;">หน่วยงานที่ขอ</th>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                            <?php
-                                                        $ii = 1;
-                                                        $standarsidtb = $_REQUEST['standard_idtb'];
-                                                        $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
-                                                        WHERE standard_idtb  = '$standarsidtb' ";
-                                                        $query2 = sqlsrv_query($conn, $sql2);
-                                                        while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                                        <?= $ii++ ?>. <?= $result2['name_agency']; ?><br>
-                                                        <?php } ?>
-                        </td>
-                            <td style="text-align: center; ">
-                         <?php
-                                            $iii = 1;
-                                            $standarsidtb = $_REQUEST['standard_idtb'];
-                                            $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
+            <thead>
+                <tr>
+                    <th style="background-color:#3cb371 ;">หน่วยงานที่สามารถทดสอบได้</th>
+                    <th style="background-color:#3cb371 ;">หน่วยงานที่ขอ</th>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        <?php
+                        $ii = 1;
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id WHERE standard_idtb  = '$standarsidtb' ";
+                        $query2 = sqlsrv_query($conn, $sql2);
+                        while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
+                            <?= $ii++ ?>. <?= $result2['name_agency']; ?><br>
+                        <?php } ?>
+                    </td>
+                    <td style="text-align: center; ">
+                        <?php
+                        $iii = 1;
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
                                             WHERE standard_idtb  = '$standarsidtb' ";
-                                            $query3 = sqlsrv_query($conn, $sql3);
-                                            while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                                            <?= $iii++ ?>. <?= $result3['name_department']; ?><br>
-                                            <?php } ?>
-                        </td>
-                       
-                        </tr>
-                    </thead>
-                   
-                </table>
-    <hr>        
+                        $query3 = sqlsrv_query($conn, $sql3);
+                        while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
+                            <?= $iii++ ?>. <?= $result3['name_department']; ?><br>
+                        <?php } ?>
+                    </td>
+
+                </tr>
+            </thead>
+
+        </table>
+        <hr>
         <div class=" mb-3">
             <center>
                 <table class="table table-bordered " style="width: 100%;" border="">
