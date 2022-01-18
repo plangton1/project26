@@ -37,7 +37,7 @@ $statement = sqlsrv_query($conn, $query);
                         <th >ลำดับที่</th>        
                         <th class="text-white" style="background-color: green;">สถานะ</th>
                         <th class="text-white" style="background-color: green;" >วันที่แต่งตั้งสถานะ</th>
-                        <th class="1 selectt">ชื่อมาตรฐาน</th> 
+                        <th class="1 selectt"> ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
                         <th class="4 selectt">ชื่อหน่วยงานศูนย์</th>
