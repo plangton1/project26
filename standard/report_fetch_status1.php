@@ -19,16 +19,7 @@ if(($_POST['query']) != '')
 }
 else
 {
- $query = "SELECT * , a.department_id,b.department_id,b.department_name AS name_depart ,
- d.type_id,e.type_id,e.type_name AS name_type , c.standard_status,f.id_statuss,f.statuss_name AS name_status , 
- c.standard_idtb,g.standard_idtb,g.fileupload AS name_file
-  FROM dimension_department a 
- INNER JOIN department_tb b ON a.department_id = b.department_id
- INNER JOIN main_std c ON a.standard_idtb = c.standard_idtb
- INNER JOIN dimension_type d ON a.standard_idtb = d.standard_idtb 
- INNER JOIN type_tb e ON d.type_id = e.type_id
- INNER JOIN select_status f ON c.standard_status  = f.id_statuss
- INNER JOIN dimension_file g ON c.standard_idtb = g.standard_idtb";
+ $query = "";
 }
 
 $statement = sqlsrv_query($conn,$query);

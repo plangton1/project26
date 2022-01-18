@@ -50,10 +50,10 @@ $date_today = (date('d/m/Y H:i:s'));
                                         <div class="">
                                             <div class="form-group mb-2">
                                                 <label for="">วันที่รับหนังสือจากสมอ.</label>
-                                                <input type="text" id="mydate" name="standard_origin" class="form-control" disabled value="<?php echo DateThai($result["standard_pick"]); ?>">
+                                                <input type="text" id="mydate1" name="standard_origin" class="form-control" disabled value="<?php echo DateThai($result["standard_pick"]); ?>">
                                                 <br>
                                                 <label for="">วันที่ส่งเอกสารออกไป สมอ.</label>
-                                                <input type="text" id="mydate1" name="standard_origin" class="form-control" disabled value="<?php echo DateThai($result["standard_pickup"]); ?>">
+                                                <input type="text" id="mydate2" name="standard_origin" class="form-control" disabled value="<?php echo DateThai($result["standard_pickup"]); ?>">
                                             </div>
                                         </div>
                                     </div>
