@@ -1,14 +1,3 @@
-<?php
-include('./connection/connection.php');
-?>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
 <style>
     /* BASIC */
 
@@ -342,25 +331,3 @@ include('./connection/connection.php');
         margin-top:%;
     }
 </style>
-
-<div class="container  text-center mt">
-    <p class="mb-1 font2 font mt">ระบบติดตามเอกสารมาตรา 5</p>
-</div>
-
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-        <!-- Tabs Titles -->
-
-        <!-- Icon -->
-        <div class="fadeIn first ">
-            <img src="https://www.tistr.or.th/images/tistr-logo-s.png" id="icon" alt="User Icon" />
-        </div>
-
-        <!-- Login Form -->
-        <form method="POST" action="login.php" id="">
-            <input type="text" id="username" class="fadeIn second" name="username" placeholder="Login">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
-        </form>
-    </div>
-</div>

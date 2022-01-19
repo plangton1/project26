@@ -1,11 +1,11 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include('./include/css.php'); ?>
 <?php include('standard/date.php'); ?>
 <?php include('./include/head.php'); ?>
 <?php include('./connection/connection.php'); ?>
-
-
+<?php if(isset($_SESSION['user_login']) && !empty($_SESSION['user_login'])):?>
 <body>
     <?php include('./include/header.php'); ?>
 
@@ -107,6 +107,8 @@
                 include('standard/report_number1.php');
                 }elseif (isset($_GET['page']) && $_GET['page'] == 'report_agency1') {
                 include('standard/report_agency1.php');
+                }elseif (isset($_GET['page']) && $_GET['page'] == 'logout') {
+                include('logout/index.php');
             }
                 ?>
 
@@ -131,3 +133,6 @@
         $("#" + mom).append(cloning);
     }
 </script>
+<?php else : ?>
+<?php include('./login/index.php') ?>
+<?php endif; ?>

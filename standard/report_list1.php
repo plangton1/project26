@@ -5,14 +5,14 @@ $statement = sqlsrv_query($conn, $query);
 <div class="container">
     <form action="" method="post">
         <div class="col-md-4">
-        <label><input type="checkbox"  value="1"> มาตรฐานเลขที่</label><br>
-        <label><input type="checkbox"  value="2"> ประเภทผลิตภัณฑ์</label><br>
-        <label><input type="checkbox"  value="3"> กลุ่มผลิตภัณฑ์</label>
+        <label><input type="checkbox"  id="check_1" value="1"> มาตรฐานเลขที่</label><br>
+        <label><input type="checkbox"  id="check_2" value="2"> ประเภทผลิตภัณฑ์</label><br>
+        <label><input type="checkbox"  id="check_3" value="3"> กลุ่มผลิตภัณฑ์</label>
         </div>
         <div class="col-md-4">
         <label><input type="checkbox"  value=""> ศูนย์ที่เกี่ยวข้อง</label><br>
-        <label><input type="checkbox"  value="5"> แสดงวันที่/สถานะของเอกสาร</label><br>
-        <label><input type="checkbox"  value="6"> ไฟล์แนบ</label><br>
+        <label><input type="checkbox"  id="check_5" value="5"> แสดงวันที่/สถานะของเอกสาร</label><br>
+        <label><input type="checkbox"  id="check_6" value="6"> ไฟล์แนบ</label><br>
         </div>
         <div class="col-md-4">
 
@@ -29,23 +29,22 @@ $statement = sqlsrv_query($conn, $query);
         <br />
         <h1 align="center">รายงานศูนย์</h1>
         <div class="table table-bordered">
-            <table class="table" style="background-color: white;" id="tableall">
+        <table class="table" style="background-color: white;" id="tableall">
                 <thead>
-                    <tr>         
-                        <th class="">ลำดับที่</th> 
-                        <th class="text-white" style="background-color: green;">ชื่อหน่วยงานศูนย์</th>
+                    <tr>
+                        <th >ลำดับที่</th> 
+                        <th class=""style="background-color: green;">ชื่อหน่วยงานศูนย์</th>        
                         <th class="1 selectt">ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
-                       
                         <th class="5 selectt">สถานะ</th>
-                        <th class="5 selectt">วันที่แต่งตั้งสถานะ</th>
+                        <!-- <th class="5 selectt">วันที่แต่งตั้งสถานะ</th> -->
                         <th class="6 selectt">ไฟล์แนบ</th>
-
                     </tr>
                 </thead>
-                <tbody> 
-            </tbody>
+                <tbody>
+             
+                </tbody>
             </table>
 
         </div>
@@ -66,7 +65,12 @@ $statement = sqlsrv_query($conn, $query);
                 url: "./standard/report_fetch_list1.php",
                 method: "POST",
                 data: { 
-                    query: query
+                    query: query,
+                    standard_detail: $('#check_1').is(':checked'), 
+                    name_type: $('#check_2').is(':checked'),
+                    name_group: $('#check_3').is(':checked'),
+                    name_status: $('#check_5').is(':checked'),
+                    name_file: $('#check_6').is(':checked')
                 },
                 success: function(data) {
                     $('tbody').html(data);
