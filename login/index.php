@@ -6,40 +6,47 @@ if (isset($_POST) && !empty($_POST)) {
 	//  echo '</pre>';
      $username = $_POST['username'];
      $password = $_POST['password'];
-    //  print_r($_POST);
      $sql = "SELECT * FROM user_tb WHERE username = '".$username."' AND password = '".$password."'";
      $query = sqlsrv_query($conn, $sql);
-    //  print_r($query);
-     $row = sqlsrv_num_rows($query);
-
-     if ($row == 0) {
-        $result = sqlsrv_fetch_array($query , SQLSRV_FETCH_ASSOC);
+    //  $row = sqlsrv_num_rows($query);
+    $result = sqlsrv_fetch_array($query , SQLSRV_FETCH_ASSOC);
+     if (!$result) {
+        $alert = '<script type="text/javascript">';
+        $alert .= 'alert("Username and Password ไม่ถูกต้อง !!");';
+        $alert .= 'window.location.href = "";';
+        $alert .= '</script>';
+        echo $alert;
+        exit();
+     }
+     else {
         $_SESSION['user_login'] = $result['username'];
         $_SESSION['role_login'] = $result['role'];
-
-     if ($_SESSION['role_login']  == 'admin') {
+        if($result["role"] == "admin"){
          $alert = '<script type="text/javascript">';
          $alert .= 'alert("WELCOME ADMIN");';
          $alert .= 'window.location.href = "./index.php";';
          $alert .= '</script>';
          echo $alert;
          exit();
-}       if ($_SESSION['role_login']  == 'head') {
-    $alert = '<script type="text/javascript">';
-    $alert .= 'alert("WELCOME HEAD");';
-    $alert .= 'window.location.href = "./standard_head/index.php";';
-    $alert .= '</script>';
-    echo $alert;
-    exit();
+} else  $_SESSION['user_login'] = $result['username'];
+        $_SESSION['role_login'] = $result['role'];
+        if($result["role"] == "head"){
+        $alert = '<script type="text/javascript">';
+        $alert .= 'alert("WELCOME HEAD");';
+        $alert .= 'window.location.href = "./standard_head/index.php";';
+        $alert .= '</script>';
+        echo $alert;
+        exit();
 } 
-} else {
-    $alert = '<script type="text/javascript">';
-    $alert .= 'alert("Username and Password ไม่ถูกต้อง !!");';
-    $alert .= 'window.location.href = "";';
-    $alert .= '</script>';
-    echo $alert;
-    exit();
-}
+     }
+// } else {
+//     $alert = '<script type="text/javascript">';
+//     $alert .= 'alert("Username and Password ไม่ถูกต้อง !!");';
+//     $alert .= 'window.location.href = "";';
+//     $alert .= '</script>';
+//     echo $alert;
+//     exit();
+// }
      
 }
 ?>
