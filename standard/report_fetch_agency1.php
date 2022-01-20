@@ -4,20 +4,38 @@ require('../connection/connection.php');
 if(($_POST['query']) != '')
 {
  $search_text = implode(",",$_POST['query']);
- $query = "SELECT * , a.department_id,b.department_id,b.department_name AS name_depart ,
- d.type_id,e.type_id,e.type_name AS name_type , c.standard_status,f.id_statuss,f.statuss_name AS name_status , 
- c.standard_idtb,g.standard_idtb,g.fileupload AS name_file , h.agency_id,i.agency_id,i.agency_name AS name_agency, j.group_id,k.group_id,k.group_name AS name_group
-  FROM dimension_department a 
- INNER JOIN department_tb b ON a.department_id = b.department_id
- INNER JOIN main_std c ON a.standard_idtb = c.standard_idtb
- INNER JOIN dimension_type d ON a.standard_idtb = d.standard_idtb 
- INNER JOIN type_tb e ON d.type_id = e.type_id
- INNER JOIN select_status f ON c.standard_status  = f.id_statuss
- INNER JOIN dimension_file g ON c.standard_idtb = g.standard_idtb
- INNER JOIN dimension_agency h ON c.standard_idtb  = h.standard_idtb
- INNER JOIN agency_tb i ON i.agency_id = h.agency_id 
- INNER JOIN dimension_group j ON c.standard_idtb  = j.standard_idtb
- INNER JOIN group_tb k ON k.group_id = j.group_id    WHERE i.agency_id IN ($search_text) ";
+ $query = "SELECT
+ a.standard_idtb,
+ COUNT(*) as num_id,
+ STRING_AGG(cc.agency_name, ', ') AS name_agency,
+ STRING_AGG(dd.department_name, ', ') AS name_depart,
+ STRING_AGG(ee.group_name, ', ') AS name_group,
+ STRING_AGG(ff.type_name, ', ') AS name_type,
+ STRING_AGG(k.fileupload, ', ') AS name_file,
+ STRING_AGG(b.statuss_name, ', ') AS name_status,
+ STRING_AGG(a.standard_day, ', ') AS standard_day,
+ STRING_AGG(a.standard_detail, ', ') AS standard_detail,
+ STRING_AGG(a.standard_number, ', ') AS standard_number
+
+ FROM main_std a
+
+   left JOIN select_status b ON a.standard_status = b.id_statuss
+ 
+    left JOIN dimension_agency c ON a.standard_idtb = c.standard_idtb 
+    left JOIN agency_tb cc ON c.agency_id = cc.agency_id 
+ 
+    left JOIN dimension_department d ON a.standard_idtb = d.standard_idtb
+   left JOIN department_tb dd ON d.department_id = dd.department_id
+ 
+     left JOIN dimension_group e ON a.standard_idtb = e.standard_idtb 
+   left JOIN group_tb ee ON e.group_id = ee.group_id
+    
+     left JOIN dimension_type f ON a.standard_idtb = f.standard_idtb
+   left JOIN type_tb ff ON f.type_id = ff.type_id
+ 
+    left JOIN dimension_file k ON a.standard_idtb = k.standard_idtb
+ 
+    WHERE  c.agency_id IN ($search_text) GROUP BY a.standard_idtb   ";
 }
 else
 {

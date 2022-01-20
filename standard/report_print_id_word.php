@@ -48,7 +48,7 @@ require 'date.php';
       </table>
     </header> -->
     <form action="" method="post" enctype=multipart/form-data>
-        <img src="./img/tistr_sitename.png">
+    <img src="./standard/tistr_sitename.jpg">
 
         <div style="text-align:right;">
             <h2>

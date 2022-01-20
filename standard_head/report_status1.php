@@ -3,7 +3,21 @@ $query = "SELECT * from select_status ";
 $statement = sqlsrv_query($conn, $query);
 ?>
 <body onload="hiddenn('0')">
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบติดตามเอกสาร</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container" style="width:900px;">
     <form action="" method="post">
         <div class="col-md-4">
         <label><input type="checkbox" id="check_1" value="1"> ชื่อมาตรฐาน</label><br>
@@ -12,13 +26,14 @@ $statement = sqlsrv_query($conn, $query);
         </div>
         <div class="col-md-4">
         <label><input type="checkbox" id="check_4" value="4"> ศูนย์ที่เกี่ยวข้อง</label><br>
-        <label><input type="checkbox" id="" value=""> แสดงวันที่/สถานะของเอกสาร</label><br>
+        <label><input type="checkbox" id="" value="" disabled> แสดงวันที่/สถานะของเอกสาร</label><br>
         <label><input type="checkbox" id="check_6" value="6"> ไฟล์แนบ</label><br>
         </div>
 
         <div class="col-md-4">
             <select name="search_status" id="search_status" multiple class="form-control selectpicker">
-                <?php while ($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)) : ?>
+                <?php  while ($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)) :
+                    echo($row); ?>
                     <option value="<?php echo $row["id_statuss"]; ?>"><?php echo $row["statuss_name"]; ?></option>
                 <?php endwhile; ?>
             </select>
@@ -62,7 +77,7 @@ $statement = sqlsrv_query($conn, $query);
             // console.log('test', $('#check_1').is(':checked'))
             // console.log('test', $('#check_2').is(':checked'))
             $.ajax({
-                url: "./standard/report_fetch_status1.php",
+                url: "./report_fetch_status1.php",
                 method: "POST",
                 data: {
                     query: query,

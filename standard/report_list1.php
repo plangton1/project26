@@ -3,7 +3,21 @@ $query = "SELECT * from department_tb ";
 $statement = sqlsrv_query($conn, $query);
 ?>
 <body onload="hiddenn('0')">
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบติดตามเอกสาร</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container" style="width:900px;">
     <form action="" method="post">
         <div class="col-md-4">
         <label><input type="checkbox" id="check_1" value="1"> ชื่อมาตรฐาน</label><br>
@@ -12,13 +26,14 @@ $statement = sqlsrv_query($conn, $query);
         </div>
         <div class="col-md-4">
         <label><input type="checkbox" id="check_4" value="4"> ศูนย์ที่เกี่ยวข้อง</label><br>
-        <label><input type="checkbox" id="check_4" value="5"> แสดงวันที่/สถานะของเอกสาร</label><br>
+        <label><input type="checkbox" id="check_5" value="5"> แสดงวันที่/สถานะของเอกสาร</label><br>
         <label><input type="checkbox" id="check_6" value="6"> ไฟล์แนบ</label><br>
         </div>
 
         <div class="col-md-4">
             <select name="search_status" id="search_status" multiple class="form-control selectpicker">
-                <?php while ($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)) : ?>
+                <?php  while ($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)) :
+                    echo($row); ?>
                     <option value="<?php echo $row["department_id"]; ?>"><?php echo $row["department_name"]; ?></option>
                 <?php endwhile; ?>
             </select>
@@ -29,7 +44,7 @@ $statement = sqlsrv_query($conn, $query);
         <input type="hidden" name="status" id="status" />
         <div style="clear:both"></div>
         <br />
-        <h1 align="center">รายงานรายศูนย์</h1>
+        <h1 align="center">รายงานศูนย์</h1>
         <div class="table table-bordered">
             <table class="table" style="background-color: white;" id="tableall">
                 <thead>
@@ -40,6 +55,7 @@ $statement = sqlsrv_query($conn, $query);
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
                         <th class="4 selectt">ชื่อหน่วยงานศูนย์</th>
                         <th class="5 selectt">สถานะ</th>
+                        <th class="5 selectt" >วันที่แต่งตั้งสถานะ</th>
                         <th class="6 selectt">ไฟล์แนบ</th>
                     </tr>
                 </thead>
@@ -67,9 +83,10 @@ $statement = sqlsrv_query($conn, $query);
                     query: query,
                     standard_detail: $('#check_1').is(':checked'), 
                     name_type: $('#check_2').is(':checked'),
-                    name_depart: $('#check_3').is(':checked'),
-                    name_agency: $('#check_4').is(':checked'),
-                    name_status: $('#check_5').is(':checked'),
+                    name_group: $('#check_3').is(':checked'),
+                    name_depart: $('#check_4').is(':checked'),
+                    name_status: $('#check_5').is(':checked'), 
+                    standard_day: $('#check_5').is(':checked'), 
                     name_file: $('#check_6').is(':checked')
                 },
                 success: function(data) {

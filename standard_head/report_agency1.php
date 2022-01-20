@@ -63,7 +63,7 @@ $statement = sqlsrv_query($conn, $query);
 
         function load_data(query = '') {
             $.ajax({
-                url: "./standard/report_fetch_agency1.php",
+                url: "./report_fetch_agency1.php",
                 method: "POST",
                 data: { 
                     query: query,
