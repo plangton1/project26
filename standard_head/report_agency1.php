@@ -32,8 +32,8 @@ $statement = sqlsrv_query($conn, $query);
         <table class="table" style="background-color: white;" id="tableall">
                 <thead>
                     <tr>
-                        <th >ลำดับที่</th> 
-                        <th class=""style="background-color: green;">ชือหน่วยงานคู่แข่ง</th>        
+                        <th >ลำดับที่</th>   
+                        <th class="">หน่วยงานคู่แข่ง</th>     
                         <th class="1 selectt">ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
@@ -63,7 +63,7 @@ $statement = sqlsrv_query($conn, $query);
 
         function load_data(query = '') {
             $.ajax({
-                url: "./report_fetch_agency1.php",
+                url: "./standard/report_fetch_agency1.php",
                 method: "POST",
                 data: { 
                     query: query,

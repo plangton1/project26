@@ -27,13 +27,13 @@ $statement = sqlsrv_query($conn, $query);
         <input type="hidden" name="department" id="department" />
         <div style="clear:both"></div>
         <br />
-        <h1 align="center">รายงานศูนย์</h1>
+        <h1 align="center">รายงานตามหน่วยงานคู่แข่ง</h1>
         <div class="table table-bordered">
         <table class="table" style="background-color: white;" id="tableall">
                 <thead>
                     <tr>
-                        <th >ลำดับที่</th> 
-                        <th class=""style="background-color: green;">ชื่อหน่วยงานศูนย์</th>        
+                        <th >ลำดับที่</th>   
+                        <th class="">หน่วยงานคู่แข่ง</th>     
                         <th class="1 selectt">ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>

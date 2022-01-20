@@ -11,8 +11,6 @@
          <li><a class="nav-link scrollto" href="?page=report">รายงานเอกสาร</a></li>
        <li class="dropdown"><a href="#"><span>สวัสดีคุณ <?=$_SESSION['user_login'] ; ?> || ตำแหน่ง : <?=$_SESSION['role_login'] ; ?></span> <i class="bi bi-chevron-down"></i></a>
            <ul>
-         <li><a href="?page=add_group">ข้อมูลส่วนตัว</a></li>
-         <li><a href="?page=add_agency">ตั้งค่า</a></li>
          <li><a href="?page=logout" onclick="return confirm('คุณต้องการออกจากระบบหรือไม่')" >ออกจากระบบ</a></li>
        </ul>
        </li>

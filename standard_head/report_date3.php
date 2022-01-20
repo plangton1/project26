@@ -48,7 +48,7 @@ function datetodb($date)
                                       <button type="submit" class="btn btn-primary">ค้นหา</button>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
             <input type="checkbox" onclick="hiddenn('1')" id="" name="">
             <label for="">มาตรฐานเลขที่</label><br>
             <input onclick="hiddenn('2')" type="checkbox" id="" name="" >
@@ -66,9 +66,11 @@ function datetodb($date)
             <label for=""> แสดงเอกสารแนบทั้งหมด</label><br><br>
         </div>
         <div class="col-md-4">
-        <button onclick="window.print()" class="btn btn-primary">พิมพ์รายงาน</button>
+        <button onclick="window.print()" class="btn btn-primary">พิมพ์รายงาน</button> -->
+        <br>
+        <div class="col-md-4">
         <a class="btn btn-dark"  onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
-        </div>
+    </div>
                             </div>
                         </form>
                     </div>
@@ -81,9 +83,11 @@ function datetodb($date)
                                 <tr>
                                 <th width="5%">ลำดับ</th>
                                 <th width="10%">วันที่เพิ่มเอกสาร</th>
+                                <th width="10%">สถานะของเอกสาร</th>
+                                <th width="10%">วันที่แต่งตั้งสถานะ</th>
                                 <th width="10%">หมายเลขเอกสาร</th>
-                                <th width="10%">ชื่อมาตรฐาน</th>
-                                <th width="10%">หมายเหตุ</th>
+                                <th width="0%">ชื่อมาตรฐาน</th>
+                               
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,7 +102,8 @@ function datetodb($date)
                                     $from_date = datetodb($_GET['from_date']);
                                     $to_date = datetodb($_GET['to_date']);
 
-                                    $query = "SELECT * FROM main_std WHERE standard_create BETWEEN '$from_date' AND '$to_date' ";
+                                    $query = "SELECT * , a.standard_status,b.id_statuss,b.statuss_name AS name_status FROM main_std a
+                                    INNER JOIN select_status b ON a.standard_status = b.id_statuss WHERE standard_create BETWEEN '$from_date' AND '$to_date' ";
                                     $query_run = sqlsrv_query($conn, $query);
 
 									if ( $query_run > 0 )    
@@ -109,9 +114,10 @@ function datetodb($date)
                                             <tr>
                                             <td><?php echo $i++; ?></td>
                                             <td><?php echo datethai($row['standard_create']); ?></td>
+                                            <td><?php echo $row["name_status"]; ?></td>
+                                            <td><?php echo $row["standard_day"]; ?></td>
                                             <td><?php echo $row["standard_number"]; ?></td>
                                             <td><?php echo $row["standard_detail"]; ?></td>
-                                            <td><?php echo $row["standard_note"]; ?></td>
                                             </tr>
                                             <?php
                                         }

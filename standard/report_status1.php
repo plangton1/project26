@@ -68,8 +68,8 @@ $statement = sqlsrv_query($conn, $query);
                     query: query,
                     standard_detail: $('#check_1').is(':checked'), 
                     name_type: $('#check_2').is(':checked'),
-                    name_depart: $('#check_3').is(':checked'),
-                    name_agency: $('#check_4').is(':checked'),
+                    name_group: $('#check_3').is(':checked'),
+                    name_depart: $('#check_4').is(':checked'),
                     name_file: $('#check_6').is(':checked')
                 },
                 success: function(data) {
