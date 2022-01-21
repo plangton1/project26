@@ -74,6 +74,12 @@
             }
         }
 
+.bg-c-r{
+  color: red;
+}
 
+.bg-c-g{
+  color: green;
+}
 
   </style>

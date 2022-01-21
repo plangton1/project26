@@ -156,7 +156,7 @@ $query2 = sqlsrv_query($conn, $sql2);
                     <button class="btn btn-primary" type="submit" value="ค้นหา">ค้นหา</button>
 
                 </div> -->
-                    <table class="table table-hover table-responsive-xl table-striped text-center pt-5" style="background-color: white;" id="tableall">
+                    <table class="table table-hover table-responsive-xl  text-center pt-5" style="background-color: white;" id="tableall">
                         <thead>
                             <tr>
                                 <th class="col-1">ลำดับที่</th>
@@ -185,29 +185,29 @@ $query2 = sqlsrv_query($conn, $sql2);
                                         <td class="align-middle"><?= dateThai($data['standard_day']); ?></td>
                                     <?php endif; ?>
                                     <?php if ($data['id_statuss'] == 1) : ?>
-                                        <td class="align-middle " style="background-color: #daf7a6"><?= $data['name_status'] ?></td>
+                                        <td class="align-middle bg-c-g" style=""><?= $data['name_status'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($data['id_statuss'] == 2) : ?>
-                                        <td class="align-middle  text-lighred" style="background-color: #daf7a6">
+                                        <td class="align-middle  text-lighred bg-c-g" style="">
                                             <?= $data['name_status'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($data['id_statuss'] == 3) : ?>
-                                        <td class="align-middle" style="background-color: #daf7a6"><?= $data['name_status'] ?></td>
+                                        <td class="align-middle bg-c-g" style=""><?= $data['name_status'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($data['id_statuss'] == 4) : ?>
-                                        <td class="align-middle " style="background-color : #daf7a6 ;">
+                                        <td class="align-middle bg-c-g" style="">
                                             <?= $data['name_status'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($data['id_statuss'] == 5) : ?>
-                                        <td class="align-middle " style="background-color :#daf7a6 ;">
+                                        <td class="align-middle bg-c-g " style="">
                                             <?= $data['name_status'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($data['id_statuss'] == 6) : ?>
-                                        <td class="align-middle " style="background-color :#daf7a6 ;">
+                                        <td class="align-middle bg-c-g " style="">
                                             <?= $data['name_status'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($data['id_statuss'] == 7) : ?>
-                                        <td class="align-middle bg-danger">
+                                        <td class="align-middle bg-c-r">
                                             <?= $data['name_status'] ?></td>
                                     <?php endif; ?>
                                     <td class="align-middle">
