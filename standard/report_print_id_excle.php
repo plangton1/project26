@@ -79,18 +79,21 @@ header("Expires: 0");
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>
                             <td class="align-middle"><?= $data['standard_number'] ?></td>
                             <td class="align-middle"><?= $data['standard_detail'] ?></td>
-                            <td style="background-color:;">
-                                <?php
+                                <?php if($data['agency_id'] == '') { ?>
+                                    <td>ยังไม่ได้ระบุสถานะ</td>  
+                                <?php } ?> 
+                                
+                                <?php if($data['agency_id'] == true) { ?>  
+                                  <td> <?php
                                 $ii = 1;
                                 $standarsidtb = $_REQUEST['standard_idtb'];
-                                $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
-                                WHERE standard_idtb  = '$standarsidtb' ";
-                                $query2 = sqlsrv_query($conn, $sql2);
-                                while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <?= $ii++ ?>.<?= $result2['name_agency']; ?><br>
-                                <?php } ?>
+                                $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency 
+                                FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id = b.agency_id WHERE standard_idtb = '$standard_idtb'             ";
+                                $query2 = sqlsrv_query($conn, $sql2); while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
+                                  <?= $ii++ ?>.<?= $result2['name_agency']; ?><br>
+                                <?php } ?> 
+                                <?php } ?> 
                             </td>
-                            <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
                             <td>
                                 <?php
                                 $iii = 1;

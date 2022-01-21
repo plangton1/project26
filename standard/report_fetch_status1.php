@@ -4,17 +4,16 @@ require('../connection/connection.php');
 if(($_POST['query']) != '')
 {
  $search_text = implode(",",$_POST['query']);
- $query = "SELECT
- a.standard_idtb,
+ $query = "SELECT DISTINCT a.standard_idtb , a.standard_idtb,
  COUNT(*) as num_id,
- STRING_AGG(cc.agency_name, ', ') AS name_agency,
- STRING_AGG(dd.department_name, ', ') AS name_depart,
- STRING_AGG(ee.group_name, ', ') AS name_group,
- STRING_AGG(ff.type_name, ', ') AS name_type,
- STRING_AGG(k.fileupload, ', ') AS name_file,
- STRING_AGG(b.statuss_name, ', ') AS name_status,
- STRING_AGG(a.standard_day, ', ') AS standard_day,
- STRING_AGG(a.standard_detail, ', ') AS standard_detail
+ STRING_AGG(cc.agency_name, '<br/>' ) AS name_agency,
+ STRING_AGG(dd.department_name, '<br/>' ) AS name_depart,
+ STRING_AGG(ee.group_name, '<br/>' ) AS name_group,
+ STRING_AGG(ff.type_name, '<br/>' ) AS name_type,
+ STRING_AGG(k.fileupload, '<br/>' ) AS name_file,
+ STRING_AGG(b.statuss_name, '<br/>' ) AS name_status,
+ STRING_AGG(a.standard_day, '<br/>' ) AS standard_day,
+ STRING_AGG(a.standard_detail, '<br/>' ) AS standard_detail
 
  FROM main_std a
 
