@@ -25,7 +25,7 @@ $statement = sqlsrv_query($conn, $query);
         <label><input type="checkbox" id="check_3" value="3"> กลุ่มผลิตภัณฑ์</label>
         </div>
         <div class="col-md-4">
-        <label><input type="checkbox" id="check_4" value="4"> ศูนย์ที่เกี่ยวข้อง</label><br>
+        <label><input type="checkbox" id="" value=""> ศูนย์ที่เกี่ยวข้อง</label><br>
         <label><input type="checkbox" id="check_5" value="5"> แสดงวันที่/สถานะของเอกสาร</label><br>
         <label><input type="checkbox" id="check_6" value="6"> ไฟล์แนบ</label><br>
         </div>
@@ -50,10 +50,11 @@ $statement = sqlsrv_query($conn, $query);
                 <thead>
                     <tr>
                         <th >ลำดับที่</th>        
+                        <th>ที่มาจากการประชุม</th>   
+                        <th class="text-white" style="background-color: green;">ชื่อหน่วยงานศูนย์</th>
                         <th class="1 selectt">ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
                         <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
-                        <th class="4 selectt">ชื่อหน่วยงานศูนย์</th>
                         <th class="5 selectt">สถานะ</th>
                         <th class="5 selectt" >วันที่แต่งตั้งสถานะ</th>
                         <th class="6 selectt">ไฟล์แนบ</th>
@@ -81,12 +82,11 @@ $statement = sqlsrv_query($conn, $query);
                 method: "POST",
                 data: {
                     query: query,
-                    standard_detail: $('#check_1').is(':checked'), 
-                    name_type: $('#check_2').is(':checked'),
-                    name_group: $('#check_3').is(':checked'),
-                    name_depart: $('#check_4').is(':checked'),
-                    name_status: $('#check_5').is(':checked'), 
-                    standard_day: $('#check_5').is(':checked'), 
+                    standard_detail1: $('#check_1').is(':checked'), 
+                    name_type1: $('#check_2').is(':checked'),
+                    name_group1: $('#check_3').is(':checked'),
+                    name_status1: $('#check_5').is(':checked'), 
+                    standard_day1: $('#check_5').is(':checked'), 
                     name_file: $('#check_6').is(':checked')
                 },
                 success: function(data) {

@@ -4,7 +4,8 @@ require('../connection/connection.php');
 if(($_POST['query']) != '')
 {
  $search_text = implode(",",$_POST['query']);
- $query = "SELECT
+ $query = "SELECT DISTINCT b.statuss_name as name_status1 , j.source_name as standard_source1 ,
+ standard_detail as standard_detail1 ,  ff.type_name as name_type1 , ee.group_name as name_group1 , dd.department_name as name_depart1 , a.standard_day as standard_day1 , 
  a.standard_idtb,
  COUNT(*) as num_id,
  STRING_AGG(cc.agency_name, '<br/>') AS name_agency,
@@ -14,7 +15,8 @@ if(($_POST['query']) != '')
  STRING_AGG(k.fileupload, '<br/>') AS name_file,
  STRING_AGG(b.statuss_name, '<br/>') AS name_status,
  STRING_AGG(a.standard_day, '<br/>') AS standard_day,
- STRING_AGG(a.standard_detail, '<br/>') AS standard_detail
+ STRING_AGG(a.standard_detail, '<br/>') AS standard_detail,
+ STRING_AGG(j.source_name, '<br/>' ) AS standard_source
 
  FROM main_std a
 
@@ -33,8 +35,11 @@ if(($_POST['query']) != '')
    left JOIN type_tb ff ON f.type_id = ff.type_id
  
     left JOIN dimension_file k ON a.standard_idtb = k.standard_idtb
+
+    left JOIN source_tb j ON a.standard_source = j.source_id 
  
-    WHERE dd.department_id IN ($search_text) GROUP BY a.standard_idtb   ";
+    WHERE dd.department_id IN ($search_text) GROUP BY  a.standard_idtb , b.statuss_name ,
+     j.source_name , a.standard_detail  , ff.type_name , ee.group_name  , dd.department_name  , a.standard_day   ";
 }
 else
 {
@@ -49,24 +54,23 @@ while($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)){
   $output .= ' 
   <table class="table table-bordered">
   <tr>
-  <td>'.$i++.'</td>';
-  if ($_POST['standard_detail'] == 'true') {
-  $output .= '<td>'.$row["standard_detail"].'</td>';
+  <td>'.$i++.'</td>
+  <td>'.$row["standard_source1"].'</td>
+  <td>'.$row["name_depart1"].'</td>';
+  if ($_POST['standard_detail1'] == 'true') {
+  $output .= '<td>'.$row["standard_detail1"].'</td>';
   }
-  if ($_POST['name_type'] == 'true') {
-     $output .= '<td>'.$row["name_type"].'</td>';
+  if ($_POST['name_type1'] == 'true') {
+     $output .= '<td>'.$row["name_type1"].'</td>';
   }
-  if ($_POST['name_group'] == 'true') {
-    $output .= '<td>'.$row["name_group"].'</td>';
+  if ($_POST['name_group1'] == 'true') {
+    $output .= '<td>'.$row["name_group1"].'</td>';
   }
-  if ($_POST['name_depart'] == 'true') {
-      $output .= '<td>'.$row["name_depart"].'</td>';
+  if ($_POST['name_status1'] == 'true') {
+    $output .= '<td>'.$row["name_status1"].'</td>';
   }
-  if ($_POST['name_status'] == 'true') {
-    $output .= '<td>'.$row["name_status"].'</td>';
-  }
-    if ($_POST['standard_day'] == 'true') {
-      $output .= ' <td>'.$row["standard_day"].'</td>';
+    if ($_POST['standard_day1'] == 'true') {
+      $output .= ' <td>'.$row["standard_day1"].'</td>';
     }
   if ($_POST['name_file'] == 'true') {
   $output .= '<td>'.$row["name_file"].'</td>';

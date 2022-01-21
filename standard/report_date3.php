@@ -96,17 +96,17 @@ function datetodb($date)
                 <div class="card-body">
                     <table class="table table-borderd">
                         <thead>
-                        <tr>
-                        <th >ลำดับที่</th>   
-                        <th class="">วันที่สร้าง</th> 
-                        <th class="">วันที่แต่งตั้งสถานะ</th>    
-                        <th class="">ชื่อมาตรฐาน</th> 
-                        <th class="">ประเภทผลิตภัณฑ์</th>
-                        <th class="">กลุ่มผลิตภัณฑ์</th>
-                        <th class="">ชื่อหน่วยงานศูนย์</th>
-                        <th class="">สถานะ</th>
-                        <th class="">ไฟล์แนบ</th>
-                    </tr>
+                            <tr>
+                                <th>ลำดับที่</th>
+                                <th class="">วันที่สร้าง</th>
+                                <th class="">วันที่แต่งตั้งสถานะ</th>
+                                <th class="">ชื่อมาตรฐาน</th>
+                                <th class="">ประเภทผลิตภัณฑ์</th>
+                                <th class="">กลุ่มผลิตภัณฑ์</th>
+                                <th class="">ชื่อหน่วยงานศูนย์</th>
+                                <th class="">สถานะ</th>
+                                <th class="">ไฟล์แนบ</th>
+                            </tr>
                         </thead>
                         <tbody>
 
@@ -175,6 +175,7 @@ function datetodb($date)
             });
         </script>
 </body>
+
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
@@ -191,21 +192,21 @@ function datetodb($date)
     });
 </script>
 <style type="text/css">
-		.selectt {		
-			display: none;
-		}
-		label {
-			margin-right: 20px;
-		}
-	</style>
- 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('input[type="checkbox"]').click(function() {
-					var inputValue = $(this).attr("value");
-					$("." + inputValue).toggle();
-                    // console.log(inputValue);
-				});
-			});
-		</script>
+    .selectt {
+        display: none;
+    }
 
+    label {
+        margin-right: 20px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('input[type="checkbox"]').click(function() {
+            var inputValue = $(this).attr("value");
+            $("." + inputValue).toggle();
+            // console.log(inputValue);
+        });
+    });
+</script>

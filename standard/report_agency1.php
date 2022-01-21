@@ -33,6 +33,7 @@ $statement = sqlsrv_query($conn, $query);
                 <thead>
                     <tr>
                         <th >ลำดับที่</th>   
+                        <th class="">ที่มาของการประชุม</th>
                         <th class="">หน่วยงานคู่แข่ง</th>     
                         <th class="1 selectt">ชื่อมาตรฐาน</th> 
                         <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
@@ -67,11 +68,11 @@ $statement = sqlsrv_query($conn, $query);
                 method: "POST",
                 data: { 
                     query: query,
-                    standard_detail: $('#check_1').is(':checked'), 
-                    name_type: $('#check_2').is(':checked'),
-                    name_group: $('#check_3').is(':checked'),
-                    name_depart: $('#check_4').is(':checked'),
-                    name_status: $('#check_5').is(':checked'),
+                    standard_detail1: $('#check_1').is(':checked'), 
+                    name_type1: $('#check_2').is(':checked'),
+                    name_group1: $('#check_3').is(':checked'),
+                    name_depart1: $('#check_4').is(':checked'),
+                    name_status1: $('#check_5').is(':checked'),
                     name_file: $('#check_6').is(':checked')
                 },
                 success: function(data) {
