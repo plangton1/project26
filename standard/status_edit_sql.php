@@ -189,6 +189,23 @@ if (isset($_POST) && !empty($_POST)) {
         }
     }
 
+     //ประเภทมาตรฐาน
+     $count_manda = count($_REQUEST['id_dimension_manda']);
+
+     for ($i = 0; $i < $count_manda; $i++) {
+         $id_dimension_manda = $_REQUEST['id_dimension_manda'][$i];
+         $manda_id = $_REQUEST['manda_id'][$i];
+         if ($id_dimension_manda != '' && $manda_id != '') {
+             $sql_update_manda = " UPDATE dimension_manda SET manda_id = '$manda_id' WHERE id_dimension_manda = '$id_dimension_manda'";
+             $show_manda = sqlsrv_query($conn, $sql_update_manda);
+         }
+         if ($id_dimension_manda == '' && $manda_id != '') {
+             $sql_insert_manda = "INSERT INTO dimension_manda (standard_idtb,manda_id) VALUES (?,?);";
+             $value_manda = array($standard_idtb, $manda_id);
+             $insert_manda = sqlsrv_query($conn, $sql_insert_manda, $value_manda);
+         }
+     }
+
      if (sqlsrv_query($conn, $sql)) {
         $alert = '<script type="text/javascript">';
         $alert .= 'alert("แก้ไขสถานะสำเร็จ !!");';

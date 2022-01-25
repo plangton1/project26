@@ -23,7 +23,6 @@ if (isset($_POST) && !empty($_POST)) {
         $_SESSION['role_login'] = $result['role'];
         if($result["role"] == "admin"){
          $alert = '<script type="text/javascript">';
-         $alert .= 'alert("WELCOME ADMIN");';
          $alert .= 'window.location.href = "./index.php";';
          $alert .= '</script>';
          echo $alert;

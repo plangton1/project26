@@ -76,9 +76,9 @@
             document.getElementById("a4").style.display = 'none';
             document.getElementById("a33").style.display = 'none';
             document.getElementById("a44").style.display = 'none';
-            document.getElementById("a5").style.display = 'none';
-            document.getElementById("a55").style.display = 'none';
-            document.getElementById("a555").style.display = 'none';
+            // document.getElementById("a5").style.display = 'none';
+            // document.getElementById("a55").style.display = 'none';
+            // document.getElementById("a555").style.display = 'none';
             document.getElementById("a6").style.display = 'none';
             document.getElementById("a66").style.display = 'none';
         } else if (show == 1) {
@@ -90,9 +90,9 @@
             document.getElementById("a4").style.display = 'none';
             document.getElementById("a33").style.display = 'none';
             document.getElementById("a44").style.display = 'none';
-            document.getElementById("a5").style.display = 'none';
-            document.getElementById("a55").style.display = 'none';
-            document.getElementById("a555").style.display = 'none';
+            // document.getElementById("a5").style.display = 'none';
+            // document.getElementById("a55").style.display = 'none';
+            // document.getElementById("a555").style.display = 'none';
             document.getElementById("a6").style.display = 'none';
             document.getElementById("a66").style.display = 'none';
         } else if (show == 2) {
@@ -104,9 +104,9 @@
             document.getElementById("a4").style.display = '';
             document.getElementById("a33").style.display = '';
             document.getElementById("a44").style.display = '';
-            document.getElementById("a5").style.display = 'none';
-            document.getElementById("a55").style.display = 'none';
-            document.getElementById("a555").style.display = 'none';
+            // document.getElementById("a5").style.display = 'none';
+            // document.getElementById("a55").style.display = 'none';
+            // document.getElementById("a555").style.display = 'none';
             document.getElementById("a6").style.display = 'none';
             document.getElementById("a66").style.display = 'none';
         } else if (show == 3) {
@@ -118,9 +118,9 @@
             document.getElementById("a4").style.display = 'none';
             document.getElementById("a33").style.display = 'none';
             document.getElementById("a44").style.display = 'none';
-            document.getElementById("a5").style.display = '';
-            document.getElementById("a55").style.display = '';
-            document.getElementById("a555").style.display = '';
+            // document.getElementById("a5").style.display = '';
+            // document.getElementById("a55").style.display = '';
+            // document.getElementById("a555").style.display = '';
             document.getElementById("a6").style.display = '';
             document.getElementById("a66").style.display = '';
         }
@@ -136,6 +136,9 @@
         year_range: "-12:+10"
     });
     picker_date(document.getElementById("a6"), {
+        year_range: "-12:+10"
+    });
+    picker_date(document.getElementById("a2"), {
         year_range: "-12:+10"
     });
 </script>

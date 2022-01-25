@@ -34,7 +34,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                         <div class="">
                                             <div class="form-group mb-2">
                                                 <label for="">ที่มาของการประชุม</label>
-                                                <input type="text" name="standard_origin" class="form-control" disabled value="<?php echo $result["standard_origin"] ?>">
+                                                <input type="text" name="standard_meet" class="form-control" disabled value="<?php echo $result["standard_meet"] ?>">
 
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                         <div class="card-body bg-success text-white">
                                             <div class="">
                                                 <div class="form-group mb-2">
-                                                    <label for="">วันที่แต่งตั้ง</label>
+                                                    <label for="">วันที่แต่งตั้งสถานะ</label>
                                                     <div class="input-group">
                                                         <input id="" type="text" name="standard_day" class=" form-control" value="<?php echo DateThai($result['standard_day']) ?>" disabled>
                                                         <input id="mydate" type="text" name="standard_day" class=" form-control" required>
@@ -234,19 +234,73 @@ $date_today = (date('d/m/Y H:i:s'));
                                 </div> -->
 
                                 <div class="col-md-4">
-                                    <div class="card mt-4">
-                                        <div class="card-body">
-                                            <div class="">
-                                                <div class="form-group mb-2">
-                                                    <label for="">มาตรฐานบังคับ</label>
-                                                    <input type="text" name="standard_mandatory" class="form-control" value="<?php echo $result["standard_mandatory"] ?>">
+                                            <div class="card mt-4">
+                                                <div class="card-body">
+                                                    <div class="">
+                                                        <div class="form-group mb-2">
+                                                            <label for="">ประเภทมาตรฐาน</label>
+                                                            <a href="javascript:void(0)" onclick="add_element('main7','sub_main7');" class=" float-end btn btn-success">เพิ่ม</a>
+                                                            <?php
+                                                            $standarsidtb = $_REQUEST['standard_idtb'];
+                                                            $sql = "SELECT * FROM dimension_manda WHERE standard_idtb  = '$standarsidtb' ";
+                                                            $query3 = sqlsrv_query($conn, $sql);
+                                                            while ($result = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
+                                                                <?php $manda =  $result['manda_id']; ?>
+                                                                <select class="form-control" name="manda_id[]" id="manda_id" style="height: unset !important;">
+                                                                    <option value="">กรุณาเลือกประเภทมาตรฐาน</option>
+                                                                    <?php
+                                                                    $sql2 = "SELECT * FROM manda_tb";
+                                                                    $query4 = sqlsrv_query($conn, $sql2);
+                                                                    while ($result2 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) {
+                                                                        $manda2 =  $result2['manda_id'];
+                                                                        if ($manda == $manda2) {
+                                                                            $c = "selected";
+                                                                        } else {
+                                                                            $c = "";
+                                                                        }
+                                                                    ?>
+
+                                                                        <option value="<?php echo $result2['manda_id'];  ?>" <?php echo $c; ?>><?php echo $result2['manda_name']; ?>
+                                                                        </option>
+                                                                    <?php } ?>
+                                                                    <input style="display:none;" type="text" name="id_dimension_manda[]" class="form-control" value="<?php echo $result["id_dimension_manda"] ?>">
+                                                                </select>
+
+
+                                                            <?php } ?>
+                                                            <div class="main-form1 mt-3 " id="main7">
+
+                                                                <div style="display:none;">
+                                                                    <div class=" mb-2 input-group mt-2" id="sub_main7">
+                                                                        <select class="form-control" name="manda_id[]" id="manda_id" style="height: unset !important;">
+                                                                            <option selected disabled>กรุณาเลือกประเภทมาตรฐาน
+                                                                            </option>
+                                                                            <?php
+                                                                            $sql = "SELECT * FROM manda_id";
+                                                                            $query = sqlsrv_query($conn, $sql);
+                                                                            while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { ?>
+                                                                                <option value="<?php echo $result['manda_id'];  ?>">
+                                                                                    <?php echo $result['manda_name'];  ?></option>
+                                                                            <?php } ?>
+
+                                                                        </select>
+                                                                        <input type="text" name="id_dimension_manda[]" class="form-control" id="id_dimension_manda">
+
+                                                                        <button type="button" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger ">ลบ</button>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    
 
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="card mt-4">
                                         <div class="card-body">
                                             <div class="">
@@ -257,7 +311,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- 
                                 <div class="col-md-4">
                                     <div class="card mt-4">
@@ -479,7 +533,7 @@ $date_today = (date('d/m/Y H:i:s'));
 
                                 <!-- หลายฟอร์ม -->
                               
-                                        <div class="col-md-4">
+                                        <!-- <div class="col-md-4">
                                             <div class="card mt-4">
                                                 <div class="card-body">
                                                     <div class="">
@@ -543,7 +597,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                         </div>
                                     
                             </div>
-                    </div>
+                    </div> -->
 
 
                     <center>

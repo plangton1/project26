@@ -19,12 +19,11 @@ if ($mode == "insert_data") {
     $standard_meet = $_REQUEST["standard_meet"];
     $standard_number = $_REQUEST["standard_number"];
     $standard_detail = $_REQUEST["standard_detail"];
-    $standard_mandatory = $_REQUEST["standard_mandatory"];
-    $standard_tacking = $_REQUEST["standard_tacking"];
+    // $standard_tacking = $_REQUEST["standard_tacking"];
     // $standard_note = $_REQUEST["standard_note"];
     $standard_source = $_REQUEST["standard_source"];
-    $standard_origin = $_REQUEST["standard_origin"];
-    $standard_survey = $_REQUEST["standard_survey"];
+    // $standard_origin = $_REQUEST["standard_origin"];
+    $standard_survey = datetodb($_REQUEST["standard_survey"]);
     if ($_REQUEST["standard_pick"] != "" && $_REQUEST["standard_pickup"] != "") {
          $standard_pick = datetodb($_REQUEST["standard_pick"]);
          $standard_pickup = datetodb($_REQUEST["standard_pickup"]);
@@ -32,26 +31,21 @@ if ($mode == "insert_data") {
         $standard_pick = "";
         $standard_pickup = "";
     }
-    if ($_REQUEST["standard_gazet"] != "") {
-         $standard_gazet = datetodb($_REQUEST["standard_gazet"]);
-    } else {
-        $standard_gazet = "";
-    }
     $date = date('Y-m-d');
     //$file = $_REQUEST["file"];
     $group_id = $_REQUEST["group_id"];
+    $manda_id = $_REQUEST["manda_id"];
     // echo '<pre>'.print_r($_REQUEST, 1).'</pre>';
     // exit;
     $agency_id = empty($_REQUEST["agency_id"]) ? [] : $_REQUEST['agency_id'];
     $type_id = $_REQUEST["type_id"];
     $department_id = $_REQUEST["department_id"];
-    $sql = "INSERT INTO main_std ( standard_mandatory , standard_meet , standard_tacking , standard_number ,
-     standard_detail  , standard_status ,standard_create , standard_source , standard_origin , standard_survey ,
-     standard_pick , standard_pickup ,standard_gazet) 
-      VALUES ('$standard_mandatory','$standard_meet','$standard_tacking','$standard_number',
-      '$standard_detail' , '7' , '$date' ,'$standard_source' , '$standard_origin' , '$standard_survey' ,
-      '$standard_pick' ,'$standard_pickup' ,'$standard_gazet' )";
-
+    $sql = "INSERT INTO main_std (  standard_meet  , standard_number ,
+     standard_detail  , standard_status ,standard_create , standard_source  , standard_survey ,
+     standard_pick , standard_pickup ) 
+      VALUES ('$standard_meet','$standard_number',
+      '$standard_detail' , '7' , '$date' ,'$standard_source'  , '$standard_survey' ,
+      '$standard_pick' ,'$standard_pickup' )";
     //$conn->query($sql);
     //sqlsrv_close($conn);
 
@@ -98,7 +92,20 @@ if ($mode == "insert_data") {
         //echo "<br>";
     }
     
-    
+    $countmanda = count($manda_id);
+    //echo $test;
+    for ($i = 0; $i < $countmanda; $i++) {
+        $mandaid =  $manda_id[$i];
+
+        //echo "<br>";
+
+        if (trim($mandaid) <> "") {
+            $sql7 = "INSERT INTO dimension_manda ( manda_id , standard_idtb  ) 
+            VALUES ('$mandaid', '$standard_idtb')";
+
+            $stmt7 = sqlsrv_query($conn, $sql7);
+        }
+    }
     
     //2
 

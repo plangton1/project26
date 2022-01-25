@@ -122,4 +122,3 @@ $statement = sqlsrv_query($conn, $query);
 				});
 			});
 		</script>
-

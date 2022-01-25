@@ -5,9 +5,11 @@ require('pdf.php');
 <?php
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
-    $sql = "SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status 
+    $sql = "SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status  , a.standard_idtb,cc.manda_id,cc.manda_name AS name_manda 
      FROM main_std a 
      INNER JOIN select_status b ON a.standard_status = b.id_statuss 
+     INNER JOIN dimension_manda c ON a.standard_idtb = c.standard_idtb
+     LEFT JOIN manda_tb cc ON c.manda_id = cc.manda_id
      WHERE a.standard_idtb = '$standard_idtb' ";
     $query = sqlsrv_query($conn, $sql);
     $result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
@@ -18,6 +20,8 @@ $sql2 = "SELECT * FROM select_status";
 $query2 = sqlsrv_query($conn, $sql2);
 $sql3 = "SELECT * FROM type_tb";
 $query3 = sqlsrv_query($conn, $sql3);
+$sql4 = "SELECT * FROM manda_tb";
+$query4 = sqlsrv_query($conn, $sql4);
 
 ?>
 <style>
@@ -114,7 +118,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                     <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:2%; " class="table table-bordered" border="1">
                         <thead>
                             <tr style="background-color: green;">
-                                <th>มาตรฐานบังคับ.</th>
+                                <th>ประเภทมาตรฐาน</th>
                                 <th>ชื่อมาตรฐาน</th>
                                 <th>วันที่แต่งตั้งสถานะ</th>
                                 <th style="background-color:red;">สถานะ</th>
@@ -123,7 +127,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                         <tbody>
 
                             <tr>
-                                <td><?= $result['standard_mandatory'] ?></td>
+                                <td><?= $result['name_manda'] ?></td>
                                 <td><?= $result['standard_detail'] ?></td>
                                 <?php if ($result['standard_day'] == '') : ?>
                                     <td>ยังไม่ได้ระบุสถานะ</td>
@@ -170,7 +174,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                     <th>หมายเหตุ</th> -->
                         <th>หน่วยงานคู่แข่ง.</th>
                         <th>หน่วยงานที่ขอ.</th>
-                        <th>ประเภทผลิตภัณฑ์</th>
+                
                         <th>กลุ่มผลิตภัณฑ์</th>
 
                     </tr>
@@ -201,7 +205,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                                 <?= $ii++ ?>.<?= $result3['name_department']; ?><br>
                             <?php } ?>
                         </td>
-                        <td>
+                        <!-- <td>
                             <?php
                             $iii = 1;
                             $standarsidtb = $_REQUEST['standard_idtb'];
@@ -211,7 +215,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                             while ($result4 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
                                 <?= $iii++ ?>. <?= $result4['name_type']; ?><br>
                             <?php } ?>
-                        </td>
+                        </td> -->
                         <td>
                             <?php
                             $iiii = 1;
@@ -235,14 +239,14 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                         </td>
                     </tr>
                 </table>
-                <p><strong>5. หมายเลข tacking</strong> </p>
-                <table>
+                <!-- <p><strong>5. หมายเลข tacking</strong> </p> -->
+                <!-- <table>
                     <tr>
                         <td>
                         <p style="width:50%;"><?= $result['standard_tacking']; ?></p>
                             </td>
                     </tr>
-                </table>
+                </table> -->
             </div>
     </form>
 

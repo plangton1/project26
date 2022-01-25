@@ -122,15 +122,15 @@ $query2 = sqlsrv_query($conn, $sql2);
         <div class="container mb-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-9">
-                    <div class="card p-4 mt-3">
-                        <h3 class="heading mt-5 text-center">ค้นหาเอกสารที่นี่</h3>
-                        <div class="d-flex justify-content-center px-5">
-                            <div class="search"> <input type="text" class="search-input" placeholder="กรุณากรอกเลข มอก. ที่ต้องการค้นหา" name="txtKeyword" id="txtKeyword" value="<?php echo $strKeyword ?>">
-                                <button class="search-icon" type="submit" value="ค้นหา"><i class="fa fa-search"></i></button>
-                                <!-- <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a>  -->
+                        <div class="card p-4 mt-3">
+                            <h3 class="heading mt-5 text-center">ค้นหาเอกสารที่นี่</h3>
+                            <div class="d-flex justify-content-center px-5">
+                                <div class="search"> <input type="text" class="search-input" placeholder="กรุณากรอกเลข มอก. ที่ต้องการค้นหา" name="txtKeyword" id="txtKeyword" value="<?php echo $strKeyword ?>">
+                                    <button class="search-icon" type="submit" value="ค้นหา"><i class="fa fa-search"></i></button>
+                                    <!-- <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a>  -->
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -159,13 +159,13 @@ $query2 = sqlsrv_query($conn, $sql2);
                     <table class="table table-hover table-responsive-xl  text-center pt-5" style="background-color: white;" id="tableall">
                         <thead>
                             <tr>
-                                <th class="col-1">ลำดับที่</th>
-                                <th class="col-1">วันที่เพิ่มเอกสาร</th>
+                                <th class="">ลำดับที่</th>
+                                <th class="col-2">วันที่เพิ่มเอกสาร</th>
                                 <th class="col-1">วาระจากในที่ประชุมสมอ.</th>
+                                <th class="col-2">วันที่ประชุม สมอ.</th>
                                 <th class="col-1">เลขที่มอก.</th>
                                 <th class="col-2">วันที่แต่งตั้งสถานะ</th>
-                                <!-- <th class="col-1">เลขที่เอกสาร</th> -->
-                                <th class="col-2">สถานะ</th>
+                                <th class="col-1">สถานะ</th>
                                 <th class="col-1">ไฟล์แนบ</th>
                                 <th class="col-2">เมนูจัดการ</th>
                             </tr>
@@ -177,6 +177,7 @@ $query2 = sqlsrv_query($conn, $sql2);
                                     <td class="align-middle"><?= $i++ ?></td>
                                     <td class="align-middle"><?= dateThai($data['standard_create'])  ?></td>
                                     <td class="align-middle"><?= $data['standard_meet'] ?></td>
+                                    <td class="align-middle"><?= dateThai($data['standard_survey']) ?></td>
                                     <td class="align-middle"><?= $data['standard_number'] ?></td>
                                     <?php if ($data['standard_day'] == '') : ?>
                                         <td class="align-middle">ยังไม่ได้ระบุสถานะ</td>

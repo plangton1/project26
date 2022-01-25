@@ -50,7 +50,7 @@ header("Expires: 0");
                             <th rowspan="3" style="background-color: #3cb371;">เลขที่มอก.</th>
                             <th rowspan="3" style="background-color: #3cb371;">ชื่อมาตรฐาน</th>
                             <th rowspan="3" style="background-color: #3cb371;">หน่วยงานที่สามารถทดสอบได้</th>
-                            <th rowspan="3" style="background-color: #3cb371;">มาตรฐานบังคับ</th>
+                            <th rowspan="3" style="background-color: #3cb371;">ประเภทมาตรฐาน</th>
                             <th rowspan="3" style="background-color: #3cb371;">หน่วยงานที่ขอ</th>
                             <?php for ($ii = 0; $ii < 12; $ii++ ) : ?>
                             <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง<?php echo substr($ii, 28) ;?></th>

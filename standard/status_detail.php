@@ -40,11 +40,14 @@ $query3 = sqlsrv_query($conn, $sql3);
                 <h5 align="right">วันที่แต่งตั้ง : <?php echo DateThai($result['standard_day']); ?></h5>
             </div>
             <div class="row text-center">
-                <div class="col-lg-6 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-4 col-md-4 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                     <h4 class="font-mirt">วาระจากในที่ประชุมสมอ : <?php echo $result['standard_meet'] ?></h4>
                 </div>
-                <div class="col-lg-6 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-4 col-md-4 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                     <h4 clas s="font-mirt">เลขที่มอก : <?php echo $result['standard_number'] ?></h4>
+                </div>
+                <div class="col-lg-4 col-md-4 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <h4 clas s="font-mirt">วันที่ประชุม สมอ. : <?php echo $result['standard_survey'] ?></h4>
                 </div>
             </div>
             <hr>
@@ -56,9 +59,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                             <div class="card-header text-white bg-primary">1.รายละเอียดของที่มา <?php echo $result['name_source']; ?></div>
                             <div class="card-body">                
                                  <a>ที่มาของการประชุม</a>
-                                 <p class="card-text"><?php echo $result['standard_origin']; ?> </p>
-                                <a>ส่งแบบสำรวจแล้ว</a>
-                                <p class="card-text"><?php echo $result['standard_survey']; ?> </p>
+                                 <p class="card-text"><?php echo $result['standard_meet']; ?> </p>
                             </div>
                         </div>
                     </div>
@@ -101,23 +102,23 @@ $query3 = sqlsrv_query($conn, $sql3);
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <div class="card  mb-3" style="max-width: 100%">
                         <div class="card-header text-white bg-primary ">มาตรฐานบังคับ</div>
                         <div class="card-body">
                             <p class="card-text"><?php echo $result['standard_mandatory']; ?> </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
                         <div class="card-header text-white bg-primary">หมายเลข tacking</div>
                         <div class="card-body">
                             <p class="card-text"><?php echo $result['standard_tacking']; ?> </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
@@ -227,8 +228,40 @@ $query3 = sqlsrv_query($conn, $sql3);
                     </div>
                 </div>
 
+                   <!-- หลายฟอร์ม -->
+                   <div class="col-sm-6">
+                    <div class="card   mb-3" style="max-width:100%">
+                        <div class="card-header text-white bg-primary">ประเภทมาตรฐาน</div>
+                        <?php
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql3 = "SELECT * FROM dimension_manda WHERE standard_idtb  = '$standarsidtb' ";
+                        $query4 = sqlsrv_query($conn, $sql3);
+                        while ($result3 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
+                            <?php $manda =  $result3['manda_id']; ?>
+                            <select class="form-control" name="manda_id[]" id="manda_id" style="height: unset !important;" disabled>
+                                <option value="">กรุณาเลือกประเภทมาตรฐาน</option>
+                                <?php
+                                $sql33 = "SELECT * FROM manda_tb";
+                                $query43 = sqlsrv_query($conn, $sql33);
+                                while ($result43 = sqlsrv_fetch_array($query43, SQLSRV_FETCH_ASSOC)) {
+                                    $manda2 =  $result43['manda_id'];
+                                    if ($manda == $manda2) {
+                                        $c = "selected";
+                                    } else {
+                                        $c = "";
+                                    }
+                                ?>
 
-                <div class="col-sm-6">
+                                    <option value="<?php echo $result43['manda_id'];  ?>" <?php echo $c; ?>>
+                                        <?php echo $result43['manda_name']; ?></option>
+                                <?php } ?>
+                            </select>
+                        <?php } ?>
+                    </div>
+                </div>
+
+
+                <!-- <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
                         <div class="card-header text-white bg-primary">ประเภทผลิตภัณฑ์</div>
                         <?php
@@ -257,7 +290,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                             </select>
                         <?php } ?>
                     </div>
-                </div>
+                </div> -->
 
 
                 <!-- หลายฟอร์ม -->
